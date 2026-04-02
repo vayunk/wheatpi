@@ -2,54 +2,204 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KCL Robotics Lab Screen</title>
+  <meta name="viewport" content="width=3840, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>KCL Robotics Lab</title>
   <meta http-equiv="refresh" content="300">
-  " />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="dashboard">
-    <header class="card header">
-      <div>
-        <div class="eyebrow">KCL Electronics / Robotics</div>
-        <h1>Lab Display</h1>
+  <div class="aurora" aria-hidden="true"></div>
+
+  <main class="screen">
+    <!-- ── HERO: Clock + Branding ── -->
+    <section class="hero panel">
+      <div class="hero-left">
+        <span id="greeting" class="greeting">Good evening</span>
+        <div class="clock">
+          <span id="time" class="time-display">00:00</span>
+        </div>
+        <div class="seconds-track"><div id="seconds-fill" class="seconds-fill"></div></div>
+        <span id="date" class="date-display"></span>
       </div>
-      <div class="time-block">
-        <div id="date"></div>
-        <div id="time"></div>
-      </div>
-    </header>
-
-    <section class="card main">
-      <h2>Notices</h2>
-      <ul class="notice-listst">
-        >ERC rover meeting — Friday 18:00</li>
-        >Do not leave soldering stations powered overnight</l/li>
-        >3D printer queue is managed through the Discord form</l/li>
-        >PCB workshop next Wednesday</li>
-      </ul>
-    </section>
-
-    <section class="card side">
-      <h2>Today</h2>
-      <div class="event">17:00 — Open lab</div>
-      <div class="event">18:00 — Rover subsystem review</div>
-      <div class="event">19:30 — CAD help desk</div>
-    </section>
-
-    <section class="card footer">
-      <div class="ticker">
-        <span>Welcome to the robotics lab</span>
-        <span>•</span>
-        <span>Keep benches clear</span>
-        <span>•</span>
-        <span>Report broken tools in Discord</span>
-        <span>•</span>
-        <span>QR links can go here later</span>
+      <div class="hero-right">
+        <div class="brand-tag">KCL Electronics &amp; Robotics</div>
+        <span class="brand-sub">Lab Display</span>
       </div>
     </section>
-  </div>
 
-  <script src="app.js"></script>
+    <!-- ── SIDEBAR: Status / Equipment / Info ── -->
+    <aside class="sidebar panel">
+      <div class="lab-status">
+        <div class="status-badge open">
+          <span class="status-dot"></span>
+          <span>Lab Open</span>
+        </div>
+        <div class="status-hours">Closes at 21:00</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="sidebar-section">
+        <h2 class="sidebar-title">Equipment</h2>
+        <div class="equip-list">
+          <div class="equip-row" data-status="available">
+            <span class="equip-dot"></span>
+            <span class="equip-name">3D Printer (Prusa)</span>
+            <span class="equip-state">Available</span>
+          </div>
+          <div class="equip-row" data-status="in-use">
+            <span class="equip-dot"></span>
+            <span class="equip-name">3D Printer (Ender)</span>
+            <span class="equip-state">In Use</span>
+          </div>
+          <div class="equip-row" data-status="available">
+            <span class="equip-dot"></span>
+            <span class="equip-name">Soldering Station 1</span>
+            <span class="equip-state">Available</span>
+          </div>
+          <div class="equip-row" data-status="in-use">
+            <span class="equip-dot"></span>
+            <span class="equip-name">Soldering Station 2</span>
+            <span class="equip-state">In Use</span>
+          </div>
+          <div class="equip-row" data-status="maintenance">
+            <span class="equip-dot"></span>
+            <span class="equip-name">Laser Cutter</span>
+            <span class="equip-state">Maintenance</span>
+          </div>
+          <div class="equip-row" data-status="available">
+            <span class="equip-dot"></span>
+            <span class="equip-name">Oscilloscope</span>
+            <span class="equip-state">Available</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="sidebar-section">
+        <h2 class="sidebar-title">Quick Info</h2>
+        <div class="info-list">
+          <div class="info-row">
+            <span class="info-label">WiFi</span>
+            <span class="info-value">eduroam</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Discord</span>
+            <span class="info-value">/kcl-robotics</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Report Issues</span>
+            <span class="info-value">#broken-tools</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Print Queue</span>
+            <span class="info-value">Discord form</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Lab Hours</span>
+            <span class="info-value">Mon – Fri · 09 – 21</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── NOTICES ── -->
+    <section class="notices panel">
+      <div class="panel-header">
+        <h2>Notices</h2>
+        <span class="pill">Live</span>
+      </div>
+      <div class="notice-list">
+        <article class="notice-item" data-priority="default">
+          <span class="notice-dot"></span>
+          <div>
+            <h3>ERC rover meeting</h3>
+            <p>Friday, 18:00 in the lab. Bring subsystem updates.</p>
+          </div>
+        </article>
+        <article class="notice-item" data-priority="urgent">
+          <span class="notice-dot"></span>
+          <div>
+            <h3>Soldering reminder</h3>
+            <p>Do not leave stations powered overnight.</p>
+          </div>
+        </article>
+        <article class="notice-item" data-priority="default">
+          <span class="notice-dot"></span>
+          <div>
+            <h3>3D printer queue</h3>
+            <p>Submit jobs via the Discord form before printing.</p>
+          </div>
+        </article>
+        <article class="notice-item" data-priority="default">
+          <span class="notice-dot"></span>
+          <div>
+            <h3>PCB workshop</h3>
+            <p>Next Wednesday evening. KiCad basics + board review.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── SCHEDULE ── -->
+    <section class="schedule panel">
+      <div class="panel-header">
+        <h2>Today</h2>
+        <span class="pill alt">Schedule</span>
+      </div>
+      <div class="event-list" id="event-list">
+        <div class="event" data-hour="17" data-minute="0">
+          <div class="event-bar"></div>
+          <span class="event-time">17:00</span>
+          <span class="event-label">Open lab session</span>
+        </div>
+        <div class="event" data-hour="18" data-minute="0">
+          <div class="event-bar"></div>
+          <span class="event-time">18:00</span>
+          <span class="event-label">Rover subsystem review</span>
+        </div>
+        <div class="event" data-hour="19" data-minute="30">
+          <div class="event-bar"></div>
+          <span class="event-time">19:30</span>
+          <span class="event-label">CAD help desk</span>
+        </div>
+        <div class="event" data-hour="21" data-minute="0">
+          <div class="event-bar"></div>
+          <span class="event-time">21:00</span>
+          <span class="event-label">Lab closes</span>
+        </div>
+      </div>
+      <div class="next-up" id="next-up">
+        <div class="next-up-label">Up next</div>
+        <div class="next-up-event" id="next-up-text">—</div>
+        <div class="next-up-countdown" id="next-up-countdown"></div>
+      </div>
+    </section>
+
+    <!-- ── TICKER ── -->
+    <footer class="ticker-wrap">
+      <div class="ticker-track" id="ticker-track">
+        <div class="ticker-segment">
+          <span>Welcome to the robotics lab</span>
+          <span class="ticker-sep">&#x2022;</span>
+          <span>Keep benches clear after use</span>
+          <span class="ticker-sep">&#x2022;</span>
+          <span>Report broken tools in #broken-tools</span>
+          <span class="ticker-sep">&#x2022;</span>
+          <span>Respect the 3D printer queue</span>
+          <span class="ticker-sep">&#x2022;</span>
+          <span>Prototype boldly, clean up thoroughly</span>
+          <span class="ticker-sep">&#x2022;</span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
 </body>
 </html>
